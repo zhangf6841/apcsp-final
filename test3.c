@@ -30,59 +30,58 @@ int main()
   struct Student student[50];
  
   for (i = 0; i < numberofstudents; i++)
-  {
-    printf("What is your first name?\n");
-    fgets(input, 100, stdin);
-    sscanf(input, "%s", firstname);
-
-    printf("What is your last name?\n");
-    fgets(input, 100, stdin);
-    sscanf(input, "%s", lastname);
-
-    printf("How many classes are you taking?\n");
-    fgets(input, 100, stdin);
-    sscanf(input, "%d", &classnum);
-
-    printf("Enter your number grade for each class:\n");
-
-    for (i=0; i<classnum; i++)
     {
-      printf("\nEnter grade for class %d:", i+1);
+      printf("What is your first name?\n");
       fgets(input, 100, stdin);
-      sscanf(input, "%d", &mark[i]);
-      printf("you entered : %d\n", mark[i]);
-      sum=sum+mark[i];
+      sscanf(input, "%s", firstname);
+
+      printf("What is your last name?\n");
+      fgets(input, 100, stdin);
+      sscanf(input, "%s", lastname);
+
+      printf("How many classes are you taking?\n");
+      fgets(input, 100, stdin);
+      sscanf(input, "%d", &classnum);
+
+      printf("Enter your number grade for each class:\n");
+
+      for (i=0; i<classnum; i++)
+	{
+	  printf("\nEnter grade for class %d:", i+1);
+	  fgets(input, 100, stdin);
+	  sscanf(input, "%d", &mark[i]);
+	  printf("you entered : %d\n", mark[i]);
+	  sum=sum+mark[i];
+	}
+
+      avg=sum/classnum;
+
+      if (avg>=90 && avg<=100)
+	{
+	  grade = 'A';
+	}
+      else if (avg>=80 && avg<90)
+	{
+	  grade = 'B';
+	}
+      else if (avg>=70 && avg<80)
+	{
+	  grade = 'C';
+	}
+      else if (avg>=60 && avg<70)
+	{
+	  grade = 'D';
+	}
+      else
+	{
+	  grade = 'F';
+	}
+      printf("saving student %d", i);
+      strcpy(student[i].firstname, firstname);
+      strcpy(student[i].lastname, lastname);
+      student[i].classnum = classnum;
+      student[i].grade = grade;
     }
 
-avg=sum/classnum;
-
-printf("f\n", avg);
-
-  if (avg>=90 && avg<=100)
-    {
-    grade = 'A';
-    }
-  else if (avg>=80 && avg<90)
-    {
-    grade = 'B';
-    }
-  else if (avg>=70 && avg<80)
-    {
-    grade = 'C';
-    }
-  else if (avg>=60 && avg<70)
-    {
-    grade = 'D';
-    }
-  else
-    {
-    grade = 'F';
-    }
-}
-
-  strcpy(student[i].firstname, firstname);
-  strcpy(student[i].lastname, lastname);
-  student[i].classnum = classnum;
-  student[i].grade = grade;
-
+  // print students
 }
