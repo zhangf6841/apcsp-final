@@ -21,7 +21,8 @@ int main()
   char input[100], firstname[100], lastname[100];
   char grade; 
   int numberofstudents, classnum;
-  float sum, avg;
+  float sum=0;
+  float avg;
   int mark[100], i;
   printf("How many students will be stored (max 50)?\n");
   fgets(input, 100, stdin);
@@ -29,26 +30,33 @@ int main()
   struct Student student[50];
  
   for (i = 0; i < numberofstudents; i++)
-{
-  printf("What is your first name?\n");
+  {
+    printf("What is your first name?\n");
     fgets(input, 100, stdin);
     sscanf(input, "%s", firstname);
-  printf("What is your last name?\n");
+
+    printf("What is your last name?\n");
     fgets(input, 100, stdin);
     sscanf(input, "%s", lastname);
-  printf("How many classes are you taking?\n");
+
+    printf("How many classes are you taking?\n");
     fgets(input, 100, stdin);
     sscanf(input, "%d", &classnum);
-  printf("Enter your number grade for each class:\n");
-  for (i=0; i<classnum; i++)
-{
-    printf("\nEnter grade for class %d:", i+1);
-    fgets(input, 100, stdin);
-    sscanf(input, "%d", &mark[i]);
-    printf("you entered : %d\n", mark[i]);
-}
+
+    printf("Enter your number grade for each class:\n");
+
+    for (i=0; i<classnum; i++)
+    {
+      printf("\nEnter grade for class %d:", i+1);
+      fgets(input, 100, stdin);
+      sscanf(input, "%d", &mark[i]);
+      printf("you entered : %d\n", mark[i]);
+      sum=sum+mark[i];
+    }
 
 avg=sum/classnum;
+
+printf("f\n", avg);
 
   if (avg>=90 && avg<=100)
     {
