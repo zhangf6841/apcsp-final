@@ -73,5 +73,18 @@ int main()
         else if (answer == 'N' || answer == 'n')
             return 0;
    }
+
+FILE* outFile;
+
+  // open a file
+  outFile = fopen("main.c", "w");
+  if (outFile == NULL) {
+    printf("error - failed to open file for writing\n");
+    return 1;
+  }
+
+  fprintf(outFile, "This is a test file\n");  
+  fclose(outFile);
+}
 }
 
