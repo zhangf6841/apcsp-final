@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <gpacalc.h>
+#include "gpacalc.h"
 
 int main()
 {
-  char input[100], ch, answer;
+  char ch, answer;
   int i, grade[5]; 
   float credit[5], score [5], gpa = 0.0, totalcredit = 0.0;
 
- printf("Enter your letter grade, the score, and the number of credits you receive for each class this semester (If you have a free period, enter A 0 0).\n");
+ printf("Enter your letter grade, the score, and the number of credits you receive for each class.");
  printf("\n");
 
    for (i = 0; i < 4; i++)
@@ -22,11 +22,21 @@ int main()
       getchar();
    }
 
- printf("\nClass | Grade | Score | Credit\n");
+
+FILE* outFile;
+
+  // open a file
+  outFile = fopen("outputfile", "w");
+  if (outFile == NULL) {
+    printf("error - failed to open file for writing\n");
+    return 1;
+  }
+
+  fprintf(outFile, "\nClass | Grade | Score | Credit\n");
 
    for (i = 0; i < 4; i++)
    {
-      printf("  %d   |   %c   |  %.1f  |   %.0f \n", i + 1, grade[i], score[i], credit[i]);
+      fprintf(outFile, "  %d   |   %c   |  %.1f  |   %.0f \n", i + 1, grade[i], score[i], credit[i]);
    }
 
    for (i = 0; i < 4; i++)
@@ -59,12 +69,11 @@ int main()
             break;
       }
    }  
-  
- printf("Total Score: %f\tTotal Credit: %f\n", gpa, totalcredit);
+ fprintf(outFile, "Total Score: %f\tTotal Credit: %f\n", gpa, totalcredit);
  gpa = calculate(gpa, totalcredit);
- printf("Total GPA: %.2f\n", gpa); 
+ fprintf(outFile, "Total GPA: %.2f\n", gpa); 
 
- printf("\n");
+ fprintf(outFile, "\n");
    {
       printf("Do you want to continue [Y/N]?\n");
       scanf("%c", &answer);
@@ -73,18 +82,10 @@ int main()
         else if (answer == 'N' || answer == 'n')
             return 0;
    }
-
-FILE* outFile;
-
-  // open a file
-  outFile = fopen("main.c", "w");
-  if (outFile == NULL) {
-    printf("error - failed to open file for writing\n");
-    return 1;
-  }
-
-  fprintf(outFile, "This is a test file\n");  
   fclose(outFile);
 }
-}
+
+
+
+
 
