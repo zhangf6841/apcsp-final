@@ -26,7 +26,7 @@ int main()
 FILE* outFile;
 
   // open a file
-  outFile = fopen("outputfile", "w");
+  outFile = fopen("outputfile.txt", "w");
   if (outFile == NULL) {
     printf("error - failed to open file for writing\n");
     return 1;
